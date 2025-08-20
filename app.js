@@ -78,8 +78,11 @@ app.post("/addSchool", async (req, res) => {
 });
 
 
+const PORT = process.env.REMOTE_PORT || 1000;
 
-app.listen(1000, () => {
-    console.log("Server is running!")
-})
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+
 
