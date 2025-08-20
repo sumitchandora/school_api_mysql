@@ -6,11 +6,13 @@ async function connectDB() {
     // Railway DB
     return mysql.createConnection({
       host: process.env.REMOTE_HOST,
-      port: process.env.REMOTE_PORT,
+      port: Number(process.env.REMOTE_PORT),
       user: process.env.REMOTE_USER,
       password: process.env.REMOTE_PASSWORD,
       database: process.env.REMOTE_DATABASE,
-      ssl: { rejectUnauthorized: true } // Railway requires SSL
+      ssl: {
+        rejectUnauthorized: false 
+      }
     });
   } else {
     // Local DB
