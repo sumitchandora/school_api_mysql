@@ -53,7 +53,7 @@ app.get("/listSchools", async (req, res) => {
 
 app.post("/addSchool", async (req, res) => {
     try {
-      const { id, name, address, latitude, longitude } = req.body;
+      const { name, address, latitude, longitude } = req.body;
   
       // Validate
       if (!isNonEmptyString(name) || !isNonEmptyString(address))
@@ -65,8 +65,8 @@ app.post("/addSchool", async (req, res) => {
   
       const db = await connectDB();
       const [result] = await db.query(
-        `INSERT INTO schools (id, name, address, latitude, longitude) VALUES (?, ?, ?, ?, ?)`,
-        [id, name, address, Number(latitude), Number(longitude)]
+        `INSERT INTO schools (name, address, latitude, longitude) VALUES (?, ?, ?, ?)`,
+        [name, address, Number(latitude), Number(longitude)]
       );
       await db.end();
   
